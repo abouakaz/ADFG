@@ -1,0 +1,406 @@
+package adfg.diagram.edit.parts;
+
+import org.eclipse.draw2d.BorderLayout;
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RoundedRectangle;
+import org.eclipse.draw2d.Shape;
+import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Path;
+import org.eclipse.swt.graphics.Pattern;
+import org.eclipse.swt.widgets.Display;
+
+import adfg.diagram.common.gmf.PortBorderItemLocator;
+import adfg.diagram.edit.policies.AperiodicActorCanonicalEditPolicy;
+import adfg.diagram.edit.policies.AperiodicActorItemSemanticEditPolicy;
+import adfg.diagram.part.AdfgVisualIDRegistry;
+
+/**
+ * @generated
+ */
+public class AperiodicActorEditPart extends AbstractBorderedShapeEditPart {
+
+	/**
+	 * @generated
+	 */
+	public static final int VISUAL_ID = 3014;
+
+	/**
+	 * @generated
+	 */
+	protected IFigure contentPane;
+
+	/**
+	 * @generated
+	 */
+	protected IFigure primaryShape;
+
+	/**
+	 * @generated
+	 */
+	public AperiodicActorEditPart(View view) {
+		super(view);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void createDefaultEditPolicies() {
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicyWithCustomReparent(
+						AdfgVisualIDRegistry.TYPED_INSTANCE));
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new AperiodicActorItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new DragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+				new AperiodicActorCanonicalEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected LayoutEditPolicy createLayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
+
+			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View) child.getModel();
+				switch (AdfgVisualIDRegistry.getVisualID(childView)) {
+				case InputPort2EditPart.VISUAL_ID:
+				case OutputPort2EditPart.VISUAL_ID:
+					return new BorderItemSelectionEditPolicy();
+				}
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if (result == null) {
+					result = new NonResizableEditPolicy();
+				}
+				return result;
+			}
+
+			protected Command getMoveChildrenCommand(Request request) {
+				return null;
+			}
+
+			protected Command getCreateCommand(CreateRequest request) {
+				return null;
+			}
+		};
+		return lep;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure createNodeShape() {
+		return primaryShape = new AperiodicActorFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public AperiodicActorFigure getPrimaryShape() {
+		return (AperiodicActorFigure) primaryShape;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof AperiodicActorNameEditPart) {
+			((AperiodicActorNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureAperiodicActorName());
+			return true;
+		}
+
+		if (childEditPart instanceof InputPort2EditPart) {
+			BorderItemLocator locator = new PortBorderItemLocator(
+					getMainFigure(), PositionConstants.WEST);
+			getBorderedFigure().getBorderItemContainer().add(
+					((InputPort2EditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		if (childEditPart instanceof OutputPort2EditPart) {
+			BorderItemLocator locator = new PortBorderItemLocator(
+					getMainFigure(), PositionConstants.EAST);
+			getBorderedFigure().getBorderItemContainer().add(
+					((OutputPort2EditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof AperiodicActorNameEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof InputPort2EditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(
+					((InputPort2EditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof OutputPort2EditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(
+					((OutputPort2EditPart) childEditPart).getFigure());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if (editPart instanceof IBorderItemEditPart) {
+			return getBorderedFigure().getBorderItemContainer();
+		}
+		return getContentPane();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected NodeFigure createNodePlate() {
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(70, 50);
+		return result;
+	}
+
+	/**
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * 
+	 * @generated
+	 */
+	protected NodeFigure createMainFigure() {
+		NodeFigure figure = createNodePlate();
+		figure.setLayoutManager(new StackLayout());
+		IFigure shape = createNodeShape();
+		figure.add(shape);
+		contentPane = setupContentPane(shape);
+		return figure;
+	}
+
+	/**
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
+	 * @param nodeShape instance of generated figure class
+	 * @generated
+	 */
+	protected IFigure setupContentPane(IFigure nodeShape) {
+		if (nodeShape.getLayoutManager() == null) {
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			layout.setSpacing(5);
+			nodeShape.setLayoutManager(layout);
+		}
+		return nodeShape; // use nodeShape itself as contentPane
+	}
+
+	/**
+	 * @generated
+	 */
+	public IFigure getContentPane() {
+		if (contentPane != null) {
+			return contentPane;
+		}
+		return super.getContentPane();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setForegroundColor(Color color) {
+		if (primaryShape != null) {
+			primaryShape.setForegroundColor(color);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setBackgroundColor(Color color) {
+		if (primaryShape != null) {
+			primaryShape.setBackgroundColor(color);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLineWidth(int width) {
+		if (primaryShape instanceof Shape) {
+			((Shape) primaryShape).setLineWidth(width);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLineType(int style) {
+		if (primaryShape instanceof Shape) {
+			((Shape) primaryShape).setLineStyle(style);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(AdfgVisualIDRegistry
+				.getType(AperiodicActorNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public class AperiodicActorFigure extends RoundedRectangle {
+
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureAperiodicActorName;
+
+		/**
+		 * @generated
+		 */
+		public AperiodicActorFigure() {
+
+			BorderLayout layoutThis = new BorderLayout();
+			this.setLayoutManager(layoutThis);
+
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(16),
+					getMapMode().DPtoLP(16)));
+			this.setLineWidth(2);
+			this.setForegroundColor(THIS_FORE);
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(70),
+					getMapMode().DPtoLP(50)));
+			createContents();
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		private void createContents() {
+
+			fFigureAperiodicActorName = new WrappingLabel();
+			fFigureAperiodicActorName.setText("");
+			fFigureAperiodicActorName.setAlignment(PositionConstants.CENTER);
+			this.add(fFigureAperiodicActorName, BorderLayout.CENTER);
+
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureAperiodicActorName() {
+			return fFigureAperiodicActorName;
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		protected void fillShape(Graphics graphics) {
+			// Backup the graphics colors
+			Color bgColor = graphics.getBackgroundColor();
+			Color fgColor = graphics.getForegroundColor();
+			// Set the graphics color
+			graphics.setForegroundColor(new Color(null, 238, 154, 73));
+
+			double zoom = graphics.getAbsoluteScale();
+
+			float arcSize = (float) (zoom * getCornerDimensions().height);
+			PrecisionRectangle rBounds = new PrecisionRectangle(getBounds());
+			rBounds.shrink(getLineWidth() / 2, getLineWidth() / 2);
+
+			float x = rBounds.x;
+			float y = rBounds.y;
+			float width = rBounds.width;
+			float height = rBounds.height;
+
+			// start from top left "corner" and move clockwise
+			Path path = new Path(null);
+			path.addArc(x, y, arcSize, arcSize, 90, 90);
+			path.lineTo(x, y + height - arcSize / 2);
+			path.addArc(x, y + height - arcSize, arcSize, arcSize, 180, 90);
+			path.lineTo(x + width - arcSize / 2, y + height);
+			path.addArc(x + width - arcSize, y + height - arcSize, arcSize,
+					arcSize, 0, -90);
+			path.lineTo(x + width, y + height - arcSize / 2);
+			path.addArc(x + width - arcSize, y, arcSize, arcSize, 0, 90);
+			path.close();
+
+			Pattern pattern = new Pattern(Display.getCurrent(),
+					(float) (x * zoom), (float) (y * zoom),
+					(float) (x * zoom + width * zoom), (float) (y * zoom + zoom
+							* height), ColorConstants.white, new Color(null,
+							249, 197, 116));
+			graphics.setBackgroundPattern(pattern);
+
+			graphics.fillPath(path);
+			// Restore the original colors
+			graphics.setBackgroundColor(bgColor);
+			graphics.setForegroundColor(fgColor);
+			path.dispose();
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_FORE = new Color(null, 238, 154, 73);
+
+}

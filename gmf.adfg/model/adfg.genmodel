@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/gmf.adfg/src/" modelPluginID="gmf.adfg" modelName="Adfg"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>adfg.ecore</foreignModel>
+  <genPackages prefix="Adfg" disposableProviderFactory="true" ecorePackage="adfg.ecore#/">
+    <genClasses ecoreClass="adfg.ecore#//Application">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adfg.ecore#//Application/graphs"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute adfg.ecore#//Application/nbGraphs"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The SCJ application's name"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Application/name"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The number of processors on which each mission will be scheduled"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Application/nbProcessors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adfg.ecore#//Application/GraphConnections"/>
+      <genFeatures createChild="false" propertyCategory="Tool" propertyDescription="Activate dynamic checking of boundedness criterion"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Application/dynamicChecking"/>
+      <genFeatures createChild="false" propertyCategory="Tool" propertyDescription="Choose the scheduling algorithm"
+          propertySortChoices="true" ecoreFeature="ecore:EAttribute adfg.ecore#//Application/schedulingAlgorithm"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The SCJ code of the application class"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Application/sourceCode"/>
+    </genClasses>
+    <genClasses ecoreClass="adfg.ecore#//Graph">
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The SCJ mission's name (it has to be unique)"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Graph/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference adfg.ecore#//Graph/owner"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adfg.ecore#//Graph/nodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adfg.ecore#//Graph/affineRelations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adfg.ecore#//Graph/connections"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute adfg.ecore#//Graph/nbActors"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute adfg.ecore#//Graph/nbBuffers"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute adfg.ecore#//Graph/id"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The SCJ code of the mission class"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Graph/sourceCode"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Automatically computed"
+          propertyDescription="The utilization of processors" ecoreFeature="ecore:EAttribute adfg.ecore#//Graph/processorUtilization"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Automatically computed"
+          propertyDescription="The total sum of FIFO channel capacities" ecoreFeature="ecore:EAttribute adfg.ecore#//Graph/bufferingRequirements"/>
+    </genClasses>
+    <genClasses ecoreClass="adfg.ecore#//GraphConnection">
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference adfg.ecore#//GraphConnection/source"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference adfg.ecore#//GraphConnection/target"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference adfg.ecore#//GraphConnection/owner"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="adfg.ecore#//Actor">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference adfg.ecore#//Actor/owner"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adfg.ecore#//Actor/ports"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute adfg.ecore#//Actor/nbPorts"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="Name of the actor"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Actor/name"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="SCJ implementation code of the actor"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Actor/sourceCode"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Automatically computed"
+          propertyDescription="Priority of the actor " ecoreFeature="ecore:EAttribute adfg.ecore#//Actor/priority"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Automatically computed"
+          propertyDescription="The number of the processor on which the actor is allocated"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Actor/procNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="adfg.ecore#//AffineRelation">
+      <genFeatures createChild="false" propertyCategory="Parameters" propertyDescription="Parameter n"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//AffineRelation/n"/>
+      <genFeatures createChild="false" propertyCategory="Parameters" propertyDescription="Parameter phi"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//AffineRelation/phi"/>
+      <genFeatures createChild="false" propertyCategory="Parameters" propertyDescription="Parameter d"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//AffineRelation/d"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference adfg.ecore#//AffineRelation/source"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference adfg.ecore#//AffineRelation/target"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference adfg.ecore#//AffineRelation/owner"/>
+    </genClasses>
+    <genClasses ecoreClass="adfg.ecore#//Connection">
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference adfg.ecore#//Connection/source"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference adfg.ecore#//Connection/target"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference adfg.ecore#//Connection/owner"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The channel capacity"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Connection/size"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute adfg.ecore#//Connection/id"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="adfg.ecore#//Port">
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The rate function (an ultimately periodic sequence)"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Port/sequence"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference adfg.ecore#//Port/owner"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The name of the port (it has to be unique)"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Port/name"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The type of elements produced on/consumed from the port"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Port/type"/>
+    </genClasses>
+    <genClasses ecoreClass="adfg.ecore#//InputPort">
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference adfg.ecore#//InputPort/connection"/>
+    </genClasses>
+    <genClasses ecoreClass="adfg.ecore#//OutputPort">
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference adfg.ecore#//OutputPort/connection"/>
+    </genClasses>
+    <genClasses ecoreClass="adfg.ecore#//PeriodicActor">
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The period of the actor"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//PeriodicActor/period"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The user-provided upped bound on the period of the actor"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//PeriodicActor/periodUpperBound"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Automatically computed"
+          propertyDescription="The first start time of the actor" ecoreFeature="ecore:EAttribute adfg.ecore#//PeriodicActor/phase"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference adfg.ecore#//PeriodicActor/affineRelationSource"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference adfg.ecore#//PeriodicActor/affineRelationTarget"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The user-provided lower bound on the period of the actor"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//PeriodicActor/periodLowerBound"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The symbolic deadline of the actor : a fraction (less than or equal to 1) of the period (e.g. 1/2)"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//PeriodicActor/deadline"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The worst-case execution time of the actor"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//PeriodicActor/wcet"/>
+    </genClasses>
+    <genClasses ecoreClass="adfg.ecore#//Channel">
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The number of initial tokens in the channel"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//Channel/initial"/>
+    </genClasses>
+    <genClasses ecoreClass="adfg.ecore#//AperiodicActor">
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The capacity of the sporadic server bound to the actor"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//AperiodicActor/capacity"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The replenshment period of the sporadic server bound to the actor"
+          ecoreFeature="ecore:EAttribute adfg.ecore#//AperiodicActor/replenishmentPeriod"/>
+    </genClasses>
+    <genClasses ecoreClass="adfg.ecore#//LossyChannel"/>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="project.adfg.AdfgCategory"
+            name="Affine Data-Flow Graphs">
+      </category>
+      <wizard
+            category="project.adfg.AdfgCategory"
+            class="project.adfg.wizards.NewADFGProjectWizard"
+            icon="icons/projectIcon.png"
+            id="project.adfg.NewADFGProjectWizard"
+            name="ADFG Project"
+            project="true">
+      </wizard>
+   </extension>
+   <extension
+         id="project.adfg.builder"
+         name="%extension.name.0"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            hasNature="true">
+         <run
+               class="project.adfg.builder.AdfgBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="project.adfg.nature"
+         name="%extension.name"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="project.adfg.builder.AdfgNature">
+         </run>
+      </runtime>
+      <builder
+            id="project.adfg.builder">
+      </builder>
+   </extension>
+
+</plugin>

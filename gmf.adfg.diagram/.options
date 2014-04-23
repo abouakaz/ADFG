@@ -1,0 +1,7 @@
+# Tracing options for the gmf.adfg.diagram plug-in
+
+# Common issues
+gmf.adfg.diagram/debug=false
+
+# Visual IDs
+gmf.adfg.diagram/debug/visualID=false

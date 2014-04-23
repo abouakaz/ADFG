@@ -1,0 +1,49 @@
+/*
+ * Copyright (c) 2006, 2010 Borland Software Corporation and others
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«EXTENSION xpt::diagram::ViewmapAttributesUtils»
+«EXTENSION xpt::diagram::editparts::Utils»
+«EXTENSION xpt::diagram::Utils»
+
+﻿«AROUND addFixedChild FOR gmfgen::GenNode-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected boolean addFixedChild(org.eclipse.gef.EditPart childEditPart) {
+«FOREACH getInnerFixedLabels(self) AS label»«LET label.viewmap.oclAsType(gmfgen::ParentAssignedViewmap) AS childViewmap-»
+		if (childEditPart instanceof «label.getEditPartQualifiedClassName()») {
+			((«label.getEditPartQualifiedClassName()») childEditPart).«EXPAND impl::diagram::editparts::TextAware::labelSetterName FOR childViewmap»(getPrimaryShape().«childViewmap.getterName»());
+			return true;
+		}
+«ENDLET»«ENDFOREACH-»
+«FOREACH getPinnedCompartments(self) AS compartment»«LET compartment.viewmap.oclAsType(gmfgen::ParentAssignedViewmap) AS childViewmap-»
+		if (childEditPart instanceof «compartment.getEditPartQualifiedClassName()») {
+			org.eclipse.draw2d.IFigure pane = getPrimaryShape().«childViewmap.getterName»();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((«compartment.getEditPartQualifiedClassName()») childEditPart).getFigure());
+			return true;
+		}	
+«ENDLET»«ENDFOREACH-»
+«REM»For affixed children use a custom borderItemLocator«ENDREM»
+«FOREACH getSideAffixedChildren(self) AS child-»
+		if (childEditPart instanceof «child.getEditPartQualifiedClassName()») {
+			org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator locator
+				= new adfg.diagram.common.gmf.PortBorderItemLocator(getMainFigure(),
+				org.eclipse.draw2d.PositionConstants.«child.preferredSideName»);
+			getBorderedFigure().getBorderItemContainer()
+				.add(((«child.getEditPartQualifiedClassName()») childEditPart).getFigure(), locator);
+			return true;
+		}
+«ENDFOREACH-»
+		return false;
+	}
+«ENDAROUND»

@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+gmf_dashboard/domainGenerationModel=platform\:/resource/gmf.adfg/model/adfg.genmodel
+gmf_dashboard/domainModel=platform\:/resource/gmf.adfg/model/adfg.ecore
+gmf_dashboard/generationModel=platform\:/resource/gmf.adfg/model/adfg.gmfgen
+gmf_dashboard/graphicalDefinitionModel=platform\:/resource/gmf.adfg/model/adfg.gmfgraph
+gmf_dashboard/mappingModel=platform\:/resource/gmf.adfg/model/adfg.gmfmap
+gmf_dashboard/toolingDefinitionModel=platform\:/resource/gmf.adfg/model/adfg.gmftool

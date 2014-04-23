@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="adfg.presentation.AdfgModelWizardID"
+            name="%_UI_AdfgModelWizard_label"
+            class="adfg.presentation.AdfgModelWizard"
+            category="project.adfg.AdfgCategory"
+            icon="icons/full/obj16/AdfgModelFile.gif">
+         <description>%_UI_AdfgModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="adfg.presentation.AdfgEditorID"
+            name="%_UI_AdfgEditor_label"
+            icon="icons/full/obj16/AdfgModelFile.gif"
+            extensions="adfg"
+            class="adfg.presentation.AdfgEditor"
+            contributorClass="adfg.presentation.AdfgActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

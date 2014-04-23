@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmftool:ToolRegistry
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
+  <palette
+      title="adfgPalette">
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Missions"
+        description=""
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Mission"
+          description="Create Graph">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Graph.gif"
+            bundle="gmf.adfg.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Graph.gif"
+            bundle="gmf.adfg.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Transition"
+          description="Link two missions">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/GraphConnection.gif"
+            bundle="gmf.adfg.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/GraphConnection.gif"
+            bundle="gmf.adfg.edit"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Nodes"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Periodic Actor"
+          description="Create Periodic Actor">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/PeriodicActor.gif"
+            bundle="gmf.adfg.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/PeriodicActor.gif"
+            bundle="gmf.adfg.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="InputPort"
+          description="Create InputPort">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/InputPort.gif"
+            bundle="gmf.adfg.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/InputPort.gif"
+            bundle="gmf.adfg.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="OutputPort"
+          description="Create OutputPort">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/OutputPort.gif"
+            bundle="gmf.adfg.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/OutputPort.gif"
+            bundle="gmf.adfg.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Aperiodic Actor"
+          description="Create Aperiodic Actor">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/AperiodicActor.gif"
+            bundle="gmf.adfg.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/AperiodicActor.gif"
+            bundle="gmf.adfg.edit"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="NodeLinks"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Channel"
+          description="Link two ports">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Channel.gif"
+            bundle="gmf.adfg.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Channel.gif"
+            bundle="gmf.adfg.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Affine Relation"
+          description="Create Affine Relation">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/AffineRelation.gif"
+            bundle="gmf.adfg.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/AffineRelation.gif"
+            bundle="gmf.adfg.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Lossy Channel"
+          description="create Lossy Channel">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/LossyChannel.gif"
+            bundle="gmf.adfg.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/LossyChannel.gif"
+            bundle="gmf.adfg.edit"/>
+      </tools>
+    </tools>
+  </palette>
+</gmftool:ToolRegistry>
